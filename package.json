@@ -1,0 +1,24 @@
+{
+  "name": "Shade",
+  "description": "Become The Shade",
+  "author": "_checkra1n",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "https://github.com/devcheckra1n/Anon-Unblock",
+  "dependencies": {
+    "retroarch-js": "^1.0.0",
+    "express": "^4.13.0",
+    "gatling": "^2.0.0",
+    "newrelic": "^1.20.2",
+    "through": "^2.3.8",
+    "unblocker": "^2.2.0",
+    "ytdl-core": "^4.5.0"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "scripts": {
+    "start": "gatling app.js"
+  },
+  "license": "AGPL-3.0"
+}

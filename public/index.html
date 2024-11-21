@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+    body {
+        background: linear-gradient(120deg, #3a0ca3, #7209b7, #f72585);
+        background-size: 400% 400%;
+        animation: gradient-flow 15s ease infinite;
+        color: #ffffff;
+    }
+
+    @keyframes gradient-flow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .enhancements-container {
+        background: rgba(58, 12, 163, 0.9);
+        border: 1px solid #7209b7;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    button {
+        background: linear-gradient(90deg, #7209b7, #f72585);
+        border: none;
+    }
+
+    button:hover {
+        background: linear-gradient(90deg, #f72585, #7209b7);
+    }
+</style>
+
+
+<!-- Tailwind CSS -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Fade-in animations for sections
+        gsap.from('.enhancements-container', { duration: 1, opacity: 0, y: 50, ease: 'power3.out' });
+    });
+</script>
+
+  <title>Shade</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- header font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  
+  <!-- body font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,500&display=swap" rel="stylesheet">
+  
+  <style type="text/css">
+  
+    /* fonts */
+    body { font-family: 'Poppins', sans-serif;  letter-spacing: 1px;}
+    h1 { font-family: 'Poppins', sans-serif; letter-spacing: 2px;}
+    h2, h3, h4, h5, h6 { letter-spacing: 2px; font-weight: normal;}
+  
+    /* colors */
+    body { background-color: #000306; color: white;}
+    .container { background-color: #3F4038; border-color: #5B3E38}
+    a { color: #62BECB; }
+    a:hover {color: #82DEEB }
+
+	#error {  border:1px dotted white; background: brown; }
+    
+    /* stripes and borders */
+    
+    .main { background-repeat: repeat-x;  background-image: url(data:image/png;base64,aHR0cHM6Ly90aC5iaW5nLmNvbS90aC9pZC9SLjkxNzQ2NjY5Y2MxYTJiMGQxZjk5YjhlMjRmOThmM2U4P3Jpaz13RmF5YXo2Q2N4SzhiQSZyaXU9aHR0cCUzYSUyZiUyZndhbGxwYXBlcmNhdmUuY29tJTJmd3AlMmZnV1RzbTRTLmpwZyZlaGs9enh0dDJlWiUyZnE2UUMzNG9pZHhwd1Y0U0VJWmd3ViUyZjYlMmZDakN2bEVvSTQ0ayUzZCZyaXNsPSZwaWQ9SW1nUmF3JnI9MA==); }
+    .footer { min-height: 60px; background-repeat: repeat-x; background-position: bottom left; background-image: url(data:image/png;base64,aHR0cHM6Ly90aC5iaW5nLmNvbS90aC9pZC9SLjkxNzQ2NjY5Y2MxYTJiMGQxZjk5YjhlMjRmOThmM2U4P3Jpaz13RmF5YXo2Q2N4SzhiQSZyaXU9aHR0cCUzYSUyZiUyZndhbGxwYXBlcmNhdmUuY29tJTJmd3AlMmZnV1RzbTRTLmpwZyZlaGs9enh0dDJlWiUyZnE2UUMzNG9pZHhwd1Y0U0VJWmd3ViUyZjYlMmZDakN2bEVvSTQ0ayUzZCZyaXNsPSZwaWQ9SW1nUmF3JnI9MA==); }
+    .container { border-style: solid; border-width: 1px; border-radius: 10px;  -moz-border-radius: 10px;  -webkit-border-radius: 10px;  overflow:hidden;  /* otherwise the background image appears on top of the curved border */ }
+    
+    
+    /* layout */
+    body { text-align: center; }
+    .container { width: 760px; margin: 40px auto; text-align: left;  max-width: calc(100% - 10px);}
+    
+    h2, h3, h4, h5, h6 { margin-bottom: 0;  }
+    ul { line-height: 150%; }
+    ul, p {  margin-top: 5px; margin-bottom: 0; }
+    .main, .footer { padding: 1px 10px 0 10px; }
+    
+    #error {display: none; padding: 5px 10px; margin: 30px 10px; }
+    
+    form ul { list-style-type: none; padding-left: 25px;}
+    input[type=text] { width: 640px; max-width: calc(100% - 8em) }
+    
+    .footer { position: relative; clear: both;}
+    .footer p { margin:0; position: absolute; bottom: 10px;  right: 10px; padding-left: 10px; }
+    
+    #google-ad {
+        text-align: center;
+        margin: 10px auto;
+    }
+    @media(min-width: 768px) {
+        #google-ad {
+            margin: 0;
+            float:right; 
+            margin:4px 2px 2px 20px;
+        }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+  
+    <div class="main">
+  
+      <h1>Shade </h1>
+      
+      <div id="error"></div>
+
+      <form action="no-js" method="get" id="unblocker-form">
+        <p>
+          URL: 
+          <input type="text" id="url" name="url" autofocus="autofocus" />
+          <input type="submit" value="Go" />
+        </p>
+
+      </form>
+      
+<div id="google-ad">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:336px;height:280px"
+     data-ad-client="ca-pub-9477050254721722"
+     data-ad-slot="3464697570"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+      
+      <h3>About Shade </h3>
+      <p>Shade is a web proxy, that allows users to evade filters and censorship and access blocked websites. </p>
+      <p>It's designed to be extremely fast and compatible: It processes the data on-the-fly, and it only modifies URLs when necessary - relative ones will "just work". </p>
+      <p>Shade is written in JavaScript with <a href="http://nodejs.org">node.js</a>. The source code is <a href="https://github.com/devcheckra1n/Anon-Unblock">available on github</a>.</p>
+
+    </div>
+    
+    <div class="footer">
+      <p><a href="https://github.com/devcheckra1n/Anon-Unblock">Shade</a> by <a href="https://github.com/devcheckra1n" title="Node.js developer and Javascript Expert"> _checkra1n (Maxim) </a></p>
+    </div>
+  
+  </div>
+	<script>
+		function $(id){
+			return document.getElementById(id);
+		}
+		
+		$('unblocker-form').onsubmit = function(){
+			var url = $('url').value;
+			if(url.substr(0,4) != "http"){
+				url = "http://" + url;
+			}
+			window.location = location.protocol + '//' + location.host + '/proxy/' + url;
+			return false;
+		};
+		
+		function checkError(){
+			var search = window.location.search;
+			var start = search.indexOf('error=');
+			if(start > -1){
+				var stop = search.indexOf('&', start);
+				if(stop == -1){ stop = undefined; }
+				// +6 for "error="
+				var err = search.substr(start+6, stop);
+                var $error = $('error');
+				$error.innerText = $error.textContent = decodeURIComponent(err);
+				$error.style.display = "block";
+			}
+		}
+    
+		window.onload = function() { 
+			$('url').focus(); 
+			checkError(); 
+		}
+	</script>
+  
+  
+
+<!-- Aesthetic Enhancements -->
+<div class="enhancements-container bg-gray-900 text-white p-6 rounded-lg shadow-lg transition-transform hover:scale-105">
+    <h2 class="text-3xl font-bold mb-4">Proxy Settings</h2>
+
+    <!-- Content Type Filtering -->
+    <label for="block-types" class="block text-sm font-medium text-gray-300">Block Content Types:</label>
+    <select id="block-types" multiple class="mt-2 p-2 bg-gray-800 border border-gray-700 rounded w-full">
+        <option value="images">Images</option>
+        <option value="videos">Videos</option>
+        <option value="scripts">Scripts</option>
+    </select>
+    <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition ease-in-out duration-200" onclick="applyFilters()">Apply Filters</button>
+
+    <!-- URL Shortener -->
+    <h3 class="text-2xl font-semibold mt-6">URL Shortener</h3>
+    <input type="text" id="shorten-url" placeholder="Enter URL to shorten" class="mt-2 p-2 w-full bg-gray-800 border border-gray-700 rounded" />
+    <button class="mt-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition ease-in-out duration-200" onclick="shortenUrl()">Shorten</button>
+    <p id="shortened-url" class="mt-2 text-sm text-gray-400"></p>
+
+    <!-- Cookie Management -->
+    <h3 class="text-2xl font-semibold mt-6">Manage Cookies</h3>
+    <textarea id="cookie-editor" placeholder="Add cookies in JSON format" class="mt-2 p-2 w-full bg-gray-800 border border-gray-700 rounded"></textarea>
+    <button class="mt-2 bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded transition ease-in-out duration-200" onclick="updateCookies()">Update Cookies</button>
+    <p id="cookie-status" class="mt-2 text-sm text-gray-400"></p>
+
+    <!-- Dark Mode Toggle -->
+    <h3 class="text-2xl font-semibold mt-6">Appearance</h3>
+    <button id="toggle-dark-mode" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded transition ease-in-out duration-200">Toggle Dark Mode</button>
+</div>
+
+
+<!-- Popup Modal -->
+<div id="warning-popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50 hidden">
+    <div class="bg-purple-900 text-white p-8 rounded-lg shadow-lg w-11/12 md:w-1/2">
+        <h2 class="text-3xl font-bold mb-4">Warning:</h2>
+        <p class="mb-6">We do not condone activities that are against your school's policies. Please use wisely.</p>
+        <button id="agree-button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition ease-in-out duration-200">
+            I agree
+        </button>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const popup = document.getElementById('warning-popup');
+        const agreeButton = document.getElementById('agree-button');
+
+        // Show popup on page load
+        popup.classList.remove('hidden');
+        gsap.fromTo(popup, { opacity: 0 }, { opacity: 1, duration: 1 });
+
+        // Hide popup on button click
+        agreeButton.addEventListener('click', () => {
+            gsap.to(popup, { opacity: 0, duration: 0.5, onComplete: () => popup.classList.add('hidden') });
+        });
+    });
+</script>
+
+
+<!-- Centered Animated Project Name -->
+<div class="flex items-center justify-center h-screen">
+    <h1 id="shade-title" class="text-6xl font-extrabold text-white animate-shade">Shade</h1>
+</div>
+
+<style>
+    #shade-title {
+        animation: flow 5s ease-in-out infinite;
+    }
+
+    @keyframes flow {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+</style>
+
+
+<!-- About:Blank Option -->
+<div class="mt-4 text-center">
+    <button onclick="loadAboutBlank()" class="bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded">Load in about:blank</button>
+</div>
+
+<script>
+    function loadAboutBlank() {
+        const htmlContent = document.documentElement.outerHTML;
+        const newWindow = window.open('about:blank', '_blank');
+        newWindow.document.open();
+        newWindow.document.write(htmlContent);
+        newWindow.document.close();
+    }
+</script>
+
+</body>
+</html>
