@@ -6,7 +6,6 @@
   "private": true,
   "homepage": "https://github.com/devcheckra1n/Anon-Unblock",
   "dependencies": {
-    "retroarch-js": "^1.0.0",
     "express": "^4.13.0",
     "gatling": "^2.0.0",
     "newrelic": "^1.20.2",
