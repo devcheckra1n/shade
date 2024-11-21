@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emulator</title>
+    <title>Retro Emulator</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gradient-to-br from-purple-900 via-purple-800 to-purple-700 text-white min-h-screen flex flex-col items-center justify-center">
@@ -14,24 +14,17 @@
         <input type="file" id="game-file" accept=".nes,.snes,.gba,.gb,.gbc" class="mb-4 p-2 border rounded text-black">
         <button type="button" id="start-emulator" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Start Emulator</button>
     </form>
-    <iframe id="emulator-frame" class="w-full mt-8 border-none" style="height: 500px;"></iframe>
-
-    <script src="https://cdn.jsdelivr.net/npm/retroarch-js"></script>
+    <div id="emulator-container" class="mt-8 w-full max-w-4xl h-96 border-2 border-white">
+        <iframe id="emulator-frame" class="w-full h-full" src="https://webretro.github.io/"></iframe>
+    </div>
     <script>
-        document.getElementById('start-emulator').addEventListener('click', async () => {
+        document.getElementById('start-emulator').addEventListener('click', () => {
             const fileInput = document.getElementById('game-file');
             if (!fileInput.files.length) {
                 alert('Please upload a game file.');
                 return;
             }
-
-            const file = fileInput.files[0];
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const gameData = e.target.result;
-                RetroArch.startEmulator('emulator-frame', gameData);
-            };
-            reader.readAsArrayBuffer(file);
+            alert('Game file uploaded! Use the emulator controls to load it.');
         });
     </script>
 </body>

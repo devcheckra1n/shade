@@ -146,3 +146,21 @@ app.post('/shorten', async (req, res) => {
     // Add actual shortening logic
     res.send({ shortUrl: `https://short.url/${Buffer.from(url).toString('base64')}` });
 });
+
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error('Error occurred:', err.message);
+    res.status(500).send('Internal Server Error. Please try again later.');
+});
+
+// Default route for undefined paths
+app.use((req, res) => {
+    res.status(404).send('404 - Not Found');
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
