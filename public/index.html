@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shade</title>
+    <title>Shade - Advanced Proxy</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
@@ -23,42 +23,51 @@
 <body class="min-h-screen text-white flex flex-col items-center justify-center font-sans">
 
     <!-- Hero Section -->
-    <section class="text-center py-20">
+    <section class="text-center py-10">
         <h1 class="text-6xl font-extrabold mb-4 glow">Shade</h1>
-        <p class="text-lg max-w-2xl mx-auto mb-8">A modern proxy solution that empowers you to browse freely while staying stylish and secure. Enjoy the experience!</p>
-        <div class="flex justify-center gap-4">
-            <a href="/proxy" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg text-white font-medium shadow-lg transition-all">Go to Proxy</a>
-            <a href="/emulator" class="bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg text-white font-medium shadow-lg transition-all">Retro Emulator</a>
-        </div>
+        <p class="text-lg max-w-2xl mx-auto mb-8">Browse the web securely and privately with advanced proxy features at your fingertips.</p>
     </section>
 
-    <!-- Proxy Settings Section -->
+    <!-- Proxy Section -->
     <section class="w-full max-w-4xl bg-gray-900 p-6 rounded-lg shadow-lg text-center">
-        <h2 class="text-2xl font-bold mb-4">Proxy Settings</h2>
-        <div class="grid grid-cols-3 gap-4 text-gray-200">
-            <button class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition-all">Block Images</button>
-            <button class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition-all">Block Videos</button>
-            <button class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition-all">Block Scripts</button>
-        </div>
-        <div class="mt-6">
-            <h3 class="text-lg font-semibold mb-2">URL Shortener</h3>
-            <input type="text" placeholder="Enter URL" class="w-full px-4 py-2 bg-gray-800 rounded-lg text-gray-300 mb-4">
-            <button class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg text-white font-medium transition-all">Shorten</button>
+        <h2 class="text-2xl font-bold mb-4">Proxy Now</h2>
+        <form id="proxy-form" class="mb-6">
+            <input type="text" id="proxy-url" placeholder="Enter URL to proxy" class="w-full p-3 rounded-lg bg-gray-800 text-gray-300 mb-4">
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg text-white">Go</button>
+        </form>
+        <div class="text-left">
+            <h3 class="text-lg font-semibold">Features:</h3>
+            <ul class="list-disc list-inside text-gray-300">
+                <li>Ad Blocker</li>
+                <li>Tracker Blocker</li>
+                <li>Dynamic Content Filtering</li>
+                <li>Geo-Unblock (Mocked)</li>
+                <li>Dark Mode Toggle</li>
+                <li>HTTPS Support</li>
+                <li>Advanced Analytics</li>
+                <li>Custom User-Agent Spoofing</li>
+                <li>Cookie Management</li>
+                <li>Speed Optimization</li>
+            </ul>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="mt-20 text-center text-gray-400 text-sm">
         <p>© 2024 Shade. All rights reserved.</p>
-        <div class="flex justify-center gap-4 mt-4">
-            <a href="#" class="hover:text-white">Privacy Policy</a>
-            <a href="#" class="hover:text-white">Terms of Service</a>
-            <a href="https://github.com" class="hover:text-white">GitHub</a>
-        </div>
     </footer>
 
     <script>
-        // Add a subtle glow animation to the title
+        // Proxy functionality
+        document.getElementById('proxy-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const url = document.getElementById('proxy-url').value;
+            if (url) {
+                window.location.href = '/proxy/' + encodeURIComponent(url);
+            }
+        });
+
+        // Animation for the title
         gsap.fromTo(".glow", { opacity: 0.5 }, { opacity: 1, duration: 1.5, repeat: -1, yoyo: true });
     </script>
 </body>
