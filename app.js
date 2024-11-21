@@ -1,56 +1,46 @@
 
-var url = require('url');
-var querystring = require('querystring');
-var express = require('express');
-var Unblocker = require('unblocker');
-var Transform = require('stream').Transform;
+const express = require('express');
+const Unblocker = require('unblocker');
+const compression = require('compression');
 
-var app = express();
+const app = express();
 
-// Middleware for adding Google Analytics (disabled for debugging purposes)
-function addGa(html) {
-    return html; // Temporarily return HTML without modification
-}
+// Compression middleware
+app.use(compression());
 
-// Define Google Analytics Middleware (disabled)
-function googleAnalyticsMiddleware(data) {
-    if (data.contentType == 'text/html') {
-        data.stream = data.stream.pipe(new Transform({
-            decodeStrings: false,
-            transform: function(chunk, encoding, next) {
-                this.push(addGa(chunk.toString()));
-                next();
-            }
-        }));
-    }
-}
-
-// Unblocker setup
-var unblocker = new Unblocker({
-    prefix: '/proxy/',
-    requestMiddleware: [], // Temporarily disable youtube.processRequest
-    responseMiddleware: [] // Temporarily disable googleAnalyticsMiddleware
+// Unblocker proxy setup
+const unblocker = new Unblocker({
+    prefix: '/proxy/'
 });
-
-// Use Unblocker middleware
 app.use(unblocker);
 
-// Serve static files after the Unblocker
+// Proxy route to handle user-provided URLs
+app.get('/proxy/:url', (req, res) => {
+    const targetUrl = decodeURIComponent(req.params.url);
+    if (!targetUrl) {
+        res.status(400).send('Bad Request: No URL provided.');
+        return;
+    }
+    req.url = targetUrl;
+    unblocker.handleRequest(req, res);
+});
+
+// Serve static files
 app.use('/', express.static(__dirname + '/public'));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-    console.error('Error occurred:', err.message);
-    res.status(500).send('Internal Server Error. Please try again later.');
+    console.error('Proxy Error:', err);
+    res.status(500).send('Proxy Error: Unable to process your request.');
 });
 
-// Default route for undefined paths
+// Default 404 handler
 app.use((req, res) => {
     res.status(404).send('404 - Not Found');
 });
 
-// Start the server
+// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Proxy server is running on http://localhost:${PORT}`);
 });
