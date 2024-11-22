@@ -1,62 +1,44 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shade - Geo-Unblock Proxy</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-center">
-    <h1 class="text-4xl font-bold mb-6">Shade - Geo-Unblock Proxy</h1>
-
-    <form id="proxy-form" class="w-full max-w-lg text-center">
-        <select id="region" class="w-full p-3 mb-4 rounded-lg bg-gray-800 text-gray-300">
-            <option value="US">United States</option>
-            <option value="EU">Europe</option>
-            <option value="ASIA">Asia</option>
-        </select>
-        <input type="text" id="proxy-url" placeholder="Enter URL to proxy" class="w-full p-3 rounded-lg bg-gray-800 text-gray-300 mb-4">
-        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">Go</button>
-    </form>
-
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto p-6 text-center">
+        <h1 class="text-4xl font-bold mb-6">Shade - Geo-Unblock Proxy</h1>
+        <form id="proxy-form" class="w-full max-w-md mx-auto">
+            <select id="country" class="w-full p-3 mb-4 rounded bg-gray-800 text-white">
+                <option value="auto">Auto</option>
+                <option value="US">United States</option>
+                <option value="JP">Japan</option>
+                <option value="DE">Germany</option>
+                <option value="FR">France</option>
+            </select>
+            <select id="proxy-type" class="w-full p-3 mb-4 rounded bg-gray-800 text-white">
+                <option value="SOCKS5">SOCKS5 (Recommended)</option>
+                <option value="SOCKS4">SOCKS4</option>
+                <option value="HTTP">HTTP</option>
+            </select>
+            <input type="text" id="proxy-url" placeholder="Enter URL" class="w-full p-3 rounded bg-gray-800 text-white mb-4">
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded text-white">Go</button>
+        </form>
+        <div id="proxy-info" class="mt-4 hidden"></div>
+    </div>
     <script>
-        // Proxy form submission
-        document.getElementById('proxy-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const region = document.getElementById('region').value;
-            const url = document.getElementById('proxy-url').value;
-            if (region && url) {
-                window.location.href = `/proxy/${region}/${encodeURIComponent(url)}`;
-            } else {
-                alert('Please select a region and enter a URL.');
-            }
-        });
-    </script>
-
-    <form id="proxy-form" class="w-full max-w-lg text-center mt-10">
-        <select id="type" class="w-full p-3 mb-4 rounded-lg bg-gray-800 text-gray-300">
-            <option value="HTTP">HTTP</option>
-            <option value="SOCKS4">SOCKS4</option>
-            <option value="SOCKS5">SOCKS5</option>
-        </select>
-        <input type="text" id="proxy-url" placeholder="Enter URL to proxy" class="w-full p-3 rounded-lg bg-gray-800 text-gray-300 mb-4">
-        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">Go</button>
-    </form>
-    <div id="proxy-info" class="absolute top-5 right-5 bg-gray-800 text-gray-300 p-3 rounded-lg hidden"></div>
-    <script>
-        // Proxy form submission
         document.getElementById('proxy-form').addEventListener('submit', async function (e) {
             e.preventDefault();
-            const type = document.getElementById('type').value;
+            const country = document.getElementById('country').value;
+            const type = document.getElementById('proxy-type').value;
             const url = document.getElementById('proxy-url').value;
-            if (type && url) {
-                window.location.href = `/proxy/${type}/${encodeURIComponent(url)}`;
+            if (url) {
+                window.location.href = `/proxy/${type}/${encodeURIComponent(url)}?country=${country}`;
             } else {
-                alert('Please select a type and enter a URL.');
+                alert('Please enter a valid URL.');
             }
         });
     </script>
-    </body>
-    
+</body>
 </html>
