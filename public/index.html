@@ -3,74 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shade - Geo-Unblock Proxy</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <title>Shade - Proxy</title>
+  <script>
+    window.location.href = '/proxy.html';
+  </script>
 </head>
 <body>
-  <header class="header">
-    <h1 class="title animate__animated animate__fadeInDown">Shade - Geo-Unblock Proxy</h1>
-  </header>
-
-  <main class="main-container">
-    <div class="proxy-form">
-      <label for="country">Select Country:</label>
-      <select id="country" name="country">
-        <option value="US">United States</option>
-        <option value="JP">Japan</option>
-        <option value="FR">France</option>
-        <option value="DE">Germany</option>
-        <option value="IN">India</option>
-      </select>
-
-      <label for="proxy-type">Select Proxy Type:</label>
-      <select id="proxy-type" name="proxy-type">
-        <option value="SOCKS5">SOCKS5 (Recommended)</option>
-        <option value="SOCKS4">SOCKS4</option>
-        <option value="HTTP">HTTP</option>
-      </select>
-
-      <label for="url">Enter URL:</label>
-      <input type="text" id="url" name="url" placeholder="https://example.com">
-
-      <button id="go-button" class="btn">Go</button>
-    </div>
-
-    <div class="status-popup" id="status-popup">
-      <span id="proxy-status"></span>
-    </div>
-  </main>
-
-  <footer class="footer">
-    <p>Shade Proxy &copy; 2024</p>
-  </footer>
-
-  <script>
-    $(document).ready(() => {
-      const statusPopup = $('#status-popup');
-
-      $('#go-button').click(() => {
-        const country = $('#country').val();
-        const proxyType = $('#proxy-type').val();
-        const url = $('#url').val();
-
-        if (!url) {
-          alert('Please enter a URL.');
-          return;
-        }
-
-        const proxyStatus = `${proxyType} - Connecting via ${country}`;
-        $('#proxy-status').text(proxyStatus);
-
-        // Animate the popup
-        statusPopup.fadeIn().delay(2000).fadeOut();
-
-        // Redirect to proxy endpoint
-        window.location.href = `/proxy/${proxyType}?country=${country}&url=${encodeURIComponent(url)}`;
-      });
-    });
-  </script>
+  <p>Redirecting to proxy interface...</p>
 </body>
 </html>
