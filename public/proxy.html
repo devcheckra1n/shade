@@ -1,25 +1,124 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Proxy</title>
+    <title>Shade - Advanced Proxy</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-center">
-    <h1 class="text-4xl font-bold mb-6">Advanced Proxy</h1>
-    <form id="proxy-form" class="w-full max-w-lg text-center">
-        <input type="text" id="proxy-url" placeholder="Enter URL to proxy" class="w-full p-3 rounded-lg bg-gray-800 text-gray-300 mb-4">
-        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">Go</button>
-    </form>
+    <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold mb-6 text-center animate__animated animate__fadeInDown">Shade Advanced Proxy</h1>
+        
+        <div class="max-w-lg mx-auto bg-gray-800 rounded-lg p-6 shadow-lg">
+            <form id="proxy-form" class="space-y-4">
+                <div class="flex flex-col">
+                    <label for="proxy-type" class="text-gray-300 mb-2">Select Proxy Type</label>
+                    <select id="proxy-type" class="bg-gray-700 text-white rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="socks5">SOCKS5 (Recommended)</option>
+                        <option value="http">HTTP</option>
+                        <option value="https">HTTPS</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="proxy-url" class="text-gray-300 mb-2">Enter URL</label>
+                    <input type="text" id="proxy-url" placeholder="https://example.com" 
+                           class="bg-gray-700 text-white rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <button type="submit" 
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition duration-200 ease-in-out transform hover:scale-105">
+                    Connect
+                </button>
+            </form>
+        </div>
+
+        <div id="status-popup" class="fixed bottom-4 right-4 bg-gray-800 text-white p-4 rounded-lg shadow-lg hidden animate__animated animate__fadeInUp">
+            <div class="flex items-center">
+                <div class="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-blue-500 mr-3"></div>
+                <span id="proxy-status">Connecting...</span>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Redirects user to proxy path with the entered URL
-        document.getElementById('proxy-form').addEventListener('submit', function (e) {
+        // Function to fetch and parse proxy list based on type
+        async function getProxyList(type) {
+            try {
+                const response = await fetch(`/proxy_lists/${type}.txt`);
+                const text = await response.text();
+                return text.split('\n').filter(line => line.trim());
+            } catch (error) {
+                console.error('Error loading proxy list:', error);
+                return [];
+            }
+        }
+
+        // Function to get a random proxy from the list
+        function getRandomProxy(proxyList) {
+            if (!proxyList || proxyList.length === 0) return null;
+            const randomIndex = Math.floor(Math.random() * proxyList.length);
+            return proxyList[randomIndex].trim();
+        }
+
+        document.getElementById('proxy-form').addEventListener('submit', async function(e) {
             e.preventDefault();
+            
             const url = document.getElementById('proxy-url').value;
-            if (url) {
-                window.location.href = '/proxy/' + encodeURIComponent(url);
+            const proxyType = document.getElementById('proxy-type').value;
+            const statusPopup = document.getElementById('status-popup');
+            const proxyStatus = document.getElementById('proxy-status');
+
+            if (!url) {
+                alert('Please enter a valid URL');
+                return;
+            }
+
+            // Show status popup
+            statusPopup.classList.remove('hidden');
+            proxyStatus.textContent = `Loading ${proxyType.toUpperCase()} proxy list...`;
+
+            // Validate URL format
+            try {
+                new URL(url);
+            } catch {
+                statusPopup.classList.add('hidden');
+                alert('Please enter a valid URL with http:// or https://');
+                return;
+            }
+
+            // Get proxy list and select random proxy
+            const proxyList = await getProxyList(proxyType);
+            const selectedProxy = getRandomProxy(proxyList);
+
+            if (!selectedProxy) {
+                statusPopup.classList.add('hidden');
+                alert(`No ${proxyType.toUpperCase()} proxies available. Please try another proxy type.`);
+                return;
+            }
+
+            proxyStatus.textContent = `Connecting via ${proxyType.toUpperCase()} proxy...`;
+
+            // Add a slight delay to show the loading state
+            setTimeout(() => {
+                // Redirect to proxy endpoint with proxy type and selected proxy
+                window.location.href = `/proxy/${encodeURIComponent(url)}?type=${proxyType}&proxy=${encodeURIComponent(selectedProxy)}`;
+            }, 1000);
+        });
+
+        // Add input validation
+        document.getElementById('proxy-url').addEventListener('input', function(e) {
+            const input = e.target;
+            const submitButton = document.querySelector('button[type="submit"]');
+            
+            if (input.value.trim() === '') {
+                submitButton.disabled = true;
+                submitButton.classList.add('opacity-50');
+            } else {
+                submitButton.disabled = false;
+                submitButton.classList.remove('opacity-50');
             }
         });
     </script>
